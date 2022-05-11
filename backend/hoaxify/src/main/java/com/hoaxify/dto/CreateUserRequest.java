@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Data
 public class CreateUserRequest {
 
-    @NotBlank
+    @NotBlank(message = "{hoaxify.constraint.fullName.NotBlank.message}")
     @Size(min = 4, max = 50)
     private String fullName;
 
@@ -23,7 +23,7 @@ public class CreateUserRequest {
     @NotNull
     @Size(min=6, max = 255)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*., ?]).*$",
-            message = "En az bir küçük harf, bir büyük harf, bir rakam ve bir özel karakter içermelidir")
+            message = "{hoaxify.constraint.password.Pattern.message}")
     private String password;
 
 }
