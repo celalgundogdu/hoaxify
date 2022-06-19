@@ -2,7 +2,6 @@ package com.hoaxify.user;
 
 import com.hoaxify.dto.CreateUserRequest;
 import com.hoaxify.dto.converter.UserDtoConverter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,12 @@ public class UserService {
    private final UserRepository userRepository;
    private final UserDtoConverter converter;
 
-   private PasswordEncoder passwordEncoder;
+   private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserDtoConverter converter) {
+    public UserService(UserRepository userRepository, UserDtoConverter converter, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.converter = converter;
-        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void save(CreateUserRequest createUserRequest) {

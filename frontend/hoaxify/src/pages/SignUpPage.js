@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { signUp, changeLanguage } from '../api/apiCalls'
+import { signUp } from '../api/apiCalls'
 import '../bootstrap-override.scss'
 import Input from '../components/Input';
 import { withTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import axios from 'axios';
+import ButtonProgress from '../components/ButtonProgress';
 
 class SignUpPage extends Component {
 
@@ -60,24 +61,12 @@ class SignUpPage extends Component {
         this.setState({ pendingApiCall: false });
     }
 
-    handleLanguage = (language) => {
-        const { i18n } = this.props;
-        i18n.changeLanguage(language);
-        changeLanguage(language);
-    }
-
     render() {
         const { pendingApiCall, errors } = this.state;
         const { fullName, username, password, passwordRepeat } = errors;
         const { t } = this.props;
         return (
             <div className="container my-5">
-                <div className="d-flex justify-content-end">
-                    <img src="https://www.countryflagicons.com/FLAT/32/TR.png" alt="TR"
-                        onClick={() => this.handleLanguage('tr')} />
-                    <img src="https://www.countryflagicons.com/FLAT/32/GB.png" alt="EN"
-                        onClick={() => this.handleLanguage('en')} />
-                </div>
                 <h1 className="text-center">{t('Sign Up')}</h1>
                 <form>
                     <Input name="fullName" label={t("Full Name")} error={fullName} handleOnChange={this.handleOnChange} />
@@ -85,13 +74,11 @@ class SignUpPage extends Component {
                     <Input name="password" label={t("Password")} error={password} handleOnChange={this.handleOnChange} type="password" />
                     <Input name="passwordRepeat" label={t("Password Repeat")} error={passwordRepeat} handleOnChange={this.handleOnChange} type="password" />
                     <div className="text-center">
-                        <button className="btn btn-primary btn-lg" disabled={pendingApiCall || passwordRepeat !== undefined}
-                            onClick={this.handleSignUp}>
-                            {
-                                pendingApiCall && <span className="spinner-border spinner-border-sm"></span>
-                            }
-                            {t('Sign Up')}
-                        </button>
+                        <ButtonProgress
+                            onClick={this.handleSignUp}
+                            disabled={pendingApiCall || passwordRepeat !== undefined}
+                            pendingApiCall={pendingApiCall}
+                            text={t('Sign Up')} />
                     </div>
                 </form>
             </div>

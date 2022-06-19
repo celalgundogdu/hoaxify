@@ -12,7 +12,8 @@ i18n
                     'Full Name': 'Full Name',
                     'Username': 'Username',
                     'Password': 'Password',
-                    'Password Repeat': 'Password Repeat'
+                    'Password Repeat': 'Password Repeat',
+                    'Login': 'Login'
                 }
             },
             tr: {
@@ -22,7 +23,8 @@ i18n
                     'Full Name': 'Ad Soyad',
                     'Username': 'Kullanıcı Adı',
                     'Password': 'Şifre',
-                    'Password Repeat': 'Şifre Tekrar'
+                    'Password Repeat': 'Şifre Tekrar',
+                    'Login': 'Giriş Yap'
                 }
             }
         },

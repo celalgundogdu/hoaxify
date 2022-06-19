@@ -5,10 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserDto {
+public class UserAuthDto {
 
     private String fullName;
     private String username;
-    private String password;
     private String image;
 }
